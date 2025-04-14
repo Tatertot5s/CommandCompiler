@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minecraft Command Generator</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    textarea, input[type="text"] { width: 100%; padding: 8px; margin-top: 6px; margin-bottom: 16px; }
+    button { padding: 10px 20px; }
+    label { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h2>Minecraft Command Generator</h2>
+
+  <label>Input Commands (one per line)</label>
+  <textarea id="inputCommands" rows="10" placeholder='summon tnt'></textarea>
+
+  <label>Is this a "give" command?</label>
+  <input type="checkbox" id="isGiveCommand" />
+
+  <label>Output Command</label>
+  <textarea id="outputCommand" rows="6" readonly></textarea>
+
+  <button onclick="generateCommand()">Generate Command</button>
+
+  <script>
+    function generateCommand() {
+      const inputText = document.getElementById("inputCommands").value.trim();
+      const isGive = document.getElementById("isGiveCommand").checked;
+      const lines = inputText.split('\n').map(line => line.trim().replace(/"/g, '\\"'));
+
+      const start = 'summon falling_block ~ ~1 ~ {BlockState:{Name:"minecraft:redstone_block"},Time:1,Passengers:[{id:"minecraft:falling_block",BlockState:{Name:"minecraft:activator_rail"},Time:1,Passengers:[{id:"minecraft:command_block_minecart",Command:"';
+      const middle = '"},{id:"minecraft:command_block_minecart",Command:"';
+      const end = '"}]}]}';
+
+      const commandBody = lines.join(middle);
+      const summonCommand = start + commandBody + end;
+
+      let output = "";
+
+      if (isGive) {
+        const escaped = summonCommand.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+        output = `/give @p command_block[block_entity_data={id:"command_block", auto:1b, Command:"${escaped}"}] 1`;
+      } else {
+        output = summonCommand;
+      }
+
+      document.getElementById("outputCommand").value = output;
+    }
+  </script>
+
+</body>
+</html>
