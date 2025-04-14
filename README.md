@@ -11,3 +11,5 @@ The first one is so the command block stack disapears, but it needs to be delaye
 The second command kills all the command block minecart used.
 
 This works by making an redstone block falling block, with an activator rail falling block riding it, and then a bunch of command block minecarts riding the activator rail, activating them all in order.
+
+To use the python script, put it in the same folder as a file with some kind of file that has minecraft commands in it (like a .txt file, or .mcfunction) and then specify the name like "functionname.mcfunction", so with the extention. You can also optionally write the output to file, but the script will overwrite ALL contents of the file it's told to output to.
