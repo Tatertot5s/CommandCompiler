@@ -1,4 +1,4 @@
-I made a python script to turn a .mcfunction file into a single command block, and then asked ChatGPT to make a HTML version which worked first try. I may go back and rewrite the HTML code to look nicer if I decide to learn HTML, but currentley I don't know how to program in HTML lmao. The python script was created by me though.
+I made a python script to turn a .mcfunction file into a single command block, and also made a web version of it.
 
 The main use case of this is to be able to put a bunch of commands into your saved hotbar to run quickly and easily.
 

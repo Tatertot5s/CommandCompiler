@@ -61,6 +61,3 @@ def generate_command(input_file: str, output_file: str, is_give_command: bool, d
 
 if __name__ == '__main__':
 	main()
-
-#	file_read.close()
-#	file_write.close()

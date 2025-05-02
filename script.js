@@ -29,3 +29,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	inputBox.addEventListener("input", generateCommand);
 	checkbox.addEventListener("change", generateCommand);
 });
+
+function copyOutput() {
+	const output = document.getElementById('outputCommand');
+	output.select();
+	output.setSelectionRange(0, 99999);
+
+	try {
+		document.execCommand('copy');
+	} catch (err) {
+		alert('Failed to copy text.');
+	}
+}
